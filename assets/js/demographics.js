@@ -1,7 +1,5 @@
 var cbKey = "798450708f2c2df7b46e9f9649008b2f510ef672";
 var gmKey = "AIzaSyDaPZ5HfKbDDaPol5zPsE7-zvfUopTe41I";
-
-
 var long = "";
 var lat = "";
 var ansi_city_name = '';
@@ -39,7 +37,6 @@ $(document).ready(function () {
             city = payload.results[0].address_components[1].long_name;
             state = payload.results[0].address_components[3].short_name;
 
-            //  alert(city  + " " + state);
             // console.log("from getData " + lat + " " + long)
 
             //initMap(lat,long)
@@ -48,12 +45,7 @@ $(document).ready(function () {
         }).fail(function () {
             console.log("no joy");
         }) // end ajax
-
-
     } // end getData
-
-
-
 
     function getFIPS(passLat, passLng, passCity) {
         var fccURL = "https://data.fcc.gov/api/block/find?latitude=" + passLat + "&longitude=" + passLng + "&showall=true&format=jsonp"; //alert("fcc url " + fccURL);
@@ -73,10 +65,8 @@ $(document).ready(function () {
             console.log(fipsPayload);
             // fcc_fips = fipsPayload.County.FIPS;
             fcc_state = fipsPayload.State.FIPS;
-            // alert("fips " + fcc_fips + " state " + fcc_state);
             ansi_id = getPlaceID()
             // ansi_id = getPlaceID(passCity, fcc_state);
-            alert("ansi id " + ansi_id);
             getDemoData(ansi_id, fcc_state);
 
         }) // end ajax/done
@@ -91,10 +81,8 @@ function logResults(json) {
 
 
 function getPlaceID(passCity, passState) {
-    alert("from getPlae Id " + passCity + "" + passState)
     placeId = '';
     stateId = '';
-    alert(passCity + " " + passState)
     $.each(nc_array, function (i, val) {
 
         // $.each(val,function(j,innerVal){
@@ -118,7 +106,6 @@ function getPlaceID(passCity, passState) {
 }
 
 function getDemoData(passPlaceId, passState) {
-    alert("getting demo info " + passPlaceId + " " + passState)
     var url = "https://api.census.gov/data/2013/acs1?get=NAME,B01001_002E,B01001_026E&for=place:" + passPlaceId + "&in=state:" + passState + "&key=" + cbKey;
     // var url = "https://api.census.gov/data/2013/acs1?get=NAME,B01001_001E,B01001_002E&for=place:50000&in=state:11&key="+cbKey;
     console.log(url);
@@ -208,8 +195,6 @@ function setSparklines() {
                         // steps: 5,
                         // stepValue: 1.5,
                         // max: 30,
-
-
                     }
                 }]
             }
