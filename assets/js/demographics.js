@@ -10,7 +10,12 @@ var popArray = [];
 var lookUpZip = "";
 
 
+
+
+
+
 $(document).ready(function () {
+
 
 
 
@@ -45,6 +50,7 @@ $(document).ready(function () {
         }).fail(function () {
             console.log("no joy");
         }) // end ajax
+
     } // end getData
 
     function getFIPS(passLat, passLng, passCity) {
@@ -136,25 +142,25 @@ function getDemoData(passPlaceId, passState) {
 
 } // end getData
 
-function initMap(passLat, passLong) {
-    //      alert(passLat + " " + passLong);
-    //        var uluru = {lat: -25.363, lng: 131.044};
-    var uluru = {
-        lat: passLat,
-        lng: passLong
-    };
-    var map = new google.maps.Map(document.getElementById('map'), {
-        //        var map = new google.maps.Map($("#map"), {
-        //					var map = new google.maps.Map($("#map"),{
-        zoom: 14,
-        center: uluru
-    });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
+// function initMap(passLat, passLong) {
+//     //      alert(passLat + " " + passLong);
+//     //        var uluru = {lat: -25.363, lng: 131.044};
+//     var uluru = {
+//         lat: passLat,
+//         lng: passLong
+//     };
+//     var map = new google.maps.Map(document.getElementById('map'), {
+//         //        var map = new google.maps.Map($("#map"), {
+//         //					var map = new google.maps.Map($("#map"),{
+//         zoom: 14,
+//         center: uluru
+//     });
+//     var marker = new google.maps.Marker({
+//         position: uluru,
+//         map: map
+//     });
 
-} // end initmap
+// } // end initmap
 
 function setSparklines() {
 
