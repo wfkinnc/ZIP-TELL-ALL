@@ -60,12 +60,15 @@ $(document).ready(function () {
       long = payload.results[0].geometry.location.lng
       initMap(lat, long, zip);
 
+            getAndPopulateWeather();
+
     }).fail(function () {
 
     }) // end ajax
     //getMetricData(zip); 
     getMetricData();
   } // end getData
+
 
 }) // end ready
 
@@ -286,9 +289,14 @@ function createMarker(place) {
 } //end createMarker()
 
 
+//retrieves the initial data.
+database.ref().orderByChild("dateAdded").on("child_added", function(payload) {
+
+ }) // 
 // getting firebase data for the zip..and 
 // graphing it
 function getMetricData() {
+
   metricZip = $("#zipCode").val().trim();
   var numOneTotal = 0;
   var numTwoTotal = 0;
@@ -419,3 +427,41 @@ function setMetricSparklines(passArray) {
 //         }
 //     }); // end  cjart
 //   }
+
+function getAndPopulateWeather(){
+    var weatherLookupValues = {        
+        key: "e41744a703e55892",
+        url: ""
+    };
+    weatherLookupValues.url = "http://api.wunderground.com/api/" + weatherLookupValues.key + "/conditions/forecast/q/" + lat + "," + long + ".json";
+    
+
+    $.ajax({
+        type: "GET",
+        url: weatherLookupValues.url,
+        data: "data",
+        dataType: "JSON",
+        success: function (response) {
+            $("#weatherItems").empty();
+            var forecast = response.forecast.txt_forecast.forecastday;
+            for(i=0;i<forecast.length;i++){
+                var item = $("<div>").addClass("item weatherItem");
+                if(i===0) item.addClass("active");
+                var weatherHeader = $("<div>").addClass("weatherHeader");
+                var headline = $("<h2>").text(forecast[i].title).addClass("weatherDay");                
+                var icon = $("<img>").attr("src",forecast[i].icon_url).addClass("weatehrImage");
+                var body = $("<h3>").text(forecast[i].fcttext).css("padding-left","10px").css("padding-right","10px");
+                weatherHeader.append(headline);
+                weatherHeader.append(icon);
+                item.append(weatherHeader);
+                item.append(body);
+
+                $("#weatherItems").append(item);
+            }
+            
+        },
+        fail: function(){
+            $("#weatherItems").html("<h3>No weather information available for this location.</h3>");
+        }
+    });
+}

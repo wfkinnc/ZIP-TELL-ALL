@@ -34,7 +34,10 @@ var database = firebase.database();
 
 
 
+//retrieves the initial data.
+database.ref().orderByChild("dateAdded").on("child_added", function(payload) {
 
+ }) // end db.ref
 
   
     $("#zip-finder").on("click",getData);

@@ -36,7 +36,26 @@
         /* color: white; */
         font-size: 20px;
     }
+/* TONY beginning of CSS I added */
+    .invisible{
+        visibility: hidden;
+        transition: 2s;
+    }
 
+    .weatherItem{
+        padding: 10px;
+        text-align: center;
+    }
+
+    .weatherHeader, .weatherImage, .weatherDay{
+        
+        float:center;        
+    }
+
+    .weatherDay{
+        position:relative;
+    }
+/* TONY end of css I added */
     #project1 {
         /* background-image: url('images/cityofcharlotte.jpeg'); */
         /* height: 70%; */
@@ -195,7 +214,7 @@
 
 <body>
     <header class="carousel slide" id="project1">
-        <ol class="carousel-indicators">
+        <ol class="carousel-indicators" stytle="height: 10%">
             <li data-target="#myCarousel" data-slide-to="0"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -262,7 +281,7 @@
                 </div>
             </div>
             <div class="col-6 col-md-4">
-                <div class="chart-container">
+               <!--  <div class="chart-container">
                     <h3><strong>Demograpic Information</strong></h3>
                     <canvas id="myChart"></canvas>
                 </div>
@@ -270,7 +289,54 @@
                 <div class="chart-container">
                     <h3><strong>Metric Information</strong></h3>
                     <canvas id="myMetricChart"></canvas>
+                </div> -->
+
+                <!-- TONY My changes for the html are here only and start here-->
+                <div id="gatheredDataBlock">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#demographics" id=role="tab" data-toggle="tab">Demographics</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link active" href="#weatherForecast" role="tab" data-toggle="tab">Weather Forecast</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link active" href="#metrics" role="tab" data-toggle="tab">Metrics</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="demographics">
+                            <div class="chart-container" style="position: relative; height: 90%; width: auto; " id="chartSpot">
+                                <h3><strong>Demograpic Information</strong></h3>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in" id="weatherForecast">
+                                <div  class="carousel slide" data-ride="carousel" id="weatherCarousel">
+                                        <div class="carousel-inner" role="listbox" id="weatherItems">
+
+                                        </div>
+                                                                          
+                                        <a class="carousel-control left" href="#weatherCarousel" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a class="carousel-control right" href="#weatherCarousel" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                </div>
+                        </div>
+
+
+                        <div role="tabpanel" class="tab-pane fade in" id="metrics">
+                            <div class="chart-container" style="position: relative; height: auto; width: 50vh; " id="chartSpot">
+                                           <h3><strong>Metric Information</strong></h3>
+                                 <canvas id="myMetricChart"></canvas>
+                             </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- TONY my changes for the html end here -->
+
             </div>
         </div>
     </div>

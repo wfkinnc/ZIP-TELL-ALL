@@ -16,36 +16,38 @@ $(document).ready(function () {
 
     $("#zip-finder").on("click", getData);
 
-    function getData() {
-        lookUpZip = $("#zipCode").val();
-        console.log(lookUpZip)
+    // function getData() {
+    //     alert("that")
+    //     lookUpZip = $("#zipCode").val();
+    //     console.log(lookUpZip)
 
 
-        // alert(nc_array.length)
-        //var url = "https://maps.googleapis.com/maps/api/geocode/json?address=28105&key=AIzaSyDaPZ5HfKbDDaPol5zPsE7-zvfUopTe41I";
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + lookUpZip + "&key=" + gmKey;
-        console.log(url);
+    //     // alert(nc_array.length)
+    //     //var url = "https://maps.googleapis.com/maps/api/geocode/json?address=28105&key=AIzaSyDaPZ5HfKbDDaPol5zPsE7-zvfUopTe41I";
+    //     var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + lookUpZip + "&key=" + gmKey;
+    //     console.log(url);
 
-        $.ajax({
-            url: url,
-            method: "GET"
-        }).done(function (payload) {
-            console.log("from getData");
-            console.log(payload);
-            lat = payload.results[0].geometry.location.lat;
-            long = payload.results[0].geometry.location.lng;
-            city = payload.results[0].address_components[1].long_name;
-            state = payload.results[0].address_components[3].short_name;
+    //     $.ajax({
+    //         url: url,
+    //         method: "GET"
+    //     }).done(function (payload) {
+    //         console.log("from getData");
+    //         console.log(payload);
+    //         lat = payload.results[0].geometry.location.lat;
+    //         long = payload.results[0].geometry.location.lng;
+    //         city = payload.results[0].address_components[1].long_name;
+    //         state = payload.results[0].address_components[3].short_name;
 
-            // console.log("from getData " + lat + " " + long)
+    //         // console.log("from getData " + lat + " " + long)
 
-            //initMap(lat,long)
-            getPlaceID(city, state);
-            //  getFIPS(lat, long, city );
-        }).fail(function () {
-            console.log("no joy");
-        }) // end ajax
-    } // end getData
+    //         //initMap(lat,long)
+    //         getPlaceID(city, state);
+    //         //  getFIPS(lat, long, city );
+
+    //     }).fail(function () {
+    //         console.log("no joy");
+    //     }) // end ajax
+    // } // end getData
 
     function getFIPS(passLat, passLng, passCity) {
         var fccURL = "https://data.fcc.gov/api/block/find?latitude=" + passLat + "&longitude=" + passLng + "&showall=true&format=jsonp"; //alert("fcc url " + fccURL);
@@ -201,3 +203,5 @@ function setSparklines() {
         }
     }); // end  cjart
 } // end function
+
+//TONY weather function handles all weather data gathering and html calls
